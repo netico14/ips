@@ -1,0 +1,18 @@
+.login-admin{
+  background-image: url('../../assets/img/background-login.jpeg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+  
+  > div{
+    margin-bottom: 2em
+  }
+  .divForm{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center ;
+  }
+}
