@@ -15,7 +15,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Aprende con Nathalia React
+         aprende con Ernesto
         </a>
       </header>
     </div>
