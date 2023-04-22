@@ -1,18 +1,55 @@
-.login-admin{
-  background-image: url('../../assets/img/background-login.jpeg');
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  min-height: 100vh;
-  
-  > div{
-    margin-bottom: 2em
-  }
-  .divForm{
-    width: 100%;
+.container{
+    min-height: 100vh;
     display: flex;
-    flex-direction: column;
     justify-content: center;
-    text-align: center ;
-  }
+    align-items: center;
+    background-image: url('../../Images/fondo2.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    @media (max-width: 768px) {
+        background-position: right;
+    }
+    .loginform{
+        background-color: rgba(255, 255, 255, 0.33);
+        box-shadow: 0px 8px 32px 0 rgba(156, 154, 156, 0.719);
+        padding: 16px 16px 16px 16px;
+        border-radius: 16px;
+        width: 80em;
+        @media(max-width: 768px){
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+        .estilobotoningresar{
+            background-image: linear-gradient(rgba(0, 118, 193),rgba(60, 181, 221))!important;
+            border: none!important;
+            border-radius: 10px!important;
+            font-weight: 700;
+            color:aliceblue;
+            width: 100%;
+            }   
+        
+        .estilobotoncancelar{
+            border-radius: 10px!important;
+            font-weight: 700;
+            width: 100%;
+            background-color: transparent;
+            color: rgb(0, 118, 193)!important;
+            border: 2px solid rgb(0, 118, 193);
+            &:hover {
+                background-image: linear-gradient(rgb(0, 118, 193),rgb(60, 181, 221));
+                color:#fff !important;
+                cursor: pointer;
+            }
+    
+            }
+        }
+    
+    
 }
+
+.image{
+    width: auto;
+    height: 200px;
+    margin-left: 25%;
+    }
+

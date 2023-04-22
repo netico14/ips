@@ -1,72 +1,77 @@
-import { useEffect, useContext } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
-import {AppContext} from '../../Provider';
-import {loginData} from '../../controller/control';
-import { Form, Input, Button, Checkbox, Row, Col } from 'antd';
-import Logo from '../../assets/img/logo.png'
-import './style.scss'
+import React from 'react';
+import { Form, Input, Button, Row, Col } from 'antd';
+import logo from '../../Images/logo.png'
+import './Style.scss'
+import { FiLock, FiUser } from "react-icons/fi";
+import { useNavigate } from 'react-router-dom';
 
-
-function Login(){
-  const [state, setState] = useContext(AppContext)
-  const navigate = useNavigate()
-
-  const onSubmit = async(value) => {
-    const log = await loginData(value, `${process.env.REACT_APP_API_URL}/api/users/login/`)
-    if(log.length > 0){
-      setState({user: log[0], token: log[1].token})
-      if(log[0].pass === 'cfp123'){
-        alert('Por favor cambia tu contraseña y actualiza tus datos')
-        navigate('/profile')
-      }else{
-        navigate('/home')
-      }
-    }else{
-      alert('Error de usuario o contraseña')
-    }
-  }
-  return(
-    <div className='login-admin'>
-      <Row className='divForm'>
-        <Col xs={{span:20, offset:2}} md={{span:18, offset:3}} lg={{span:4, offset: 10}}>
-          <div style={{marginBottom: '2em'}}>
-            <img src={Logo} width="80px" onClick={() => navigate('/loginAdmin')}/>
-          </div>
-          <div className='form'>
-            <Form
-              name="basic"
-              onFinish={onSubmit}
-              autoComplete="off"
-              layout="vertical"
-            >
-              <Form.Item
-                name="user"
-                rules={[{ required: true, message: 'Por favor llene este espacio!' }]}
-                size='large'
-              >
-                <Input placeholder="Usuario"/>
-              </Form.Item>
-              <Form.Item
-                name="pass"
-                rules={[{ required: true, message: 'Por favor llene este espacio!' }]}
-                size='large'
-              >
-                <Input.Password placeholder="Contraseña"/>
-              </Form.Item>
-              <Form.Item>
-                <Button type="primary" className='btnPoolex' htmlType="submit" style={{width: '100%'}}>
-                  Ingresar
-                </Button>
-                <Button type="default" style={{width: '100%', marginTop: '1em'}} onClick={() => navigate('/')}>
-                  Cancelar
-                </Button>
-              </Form.Item>
-            </Form>
-          </div>
-        </Col>
-      </Row>
-    </div>
-  )
+function Login() {
+    const Datos = (value) => {
+        console.log(value)
+    };
+    const navigate = useNavigate();
+    return(
+        <div className='container'>
+            <div style={{width:'100%'}}>
+                <Row style={{display:'flex', justifyContent:'center', padding: '0 1em'}}>
+                    <Col className='loginform' xs={{span:20, offset:2 }} md={{span:10, offset:3 }} lg={{span:6, offset:10 }} style={{margin:'0 2em'}}>
+                        <div style={{display:'flex' ,justifyContent:'center',margin:'1em 0'}}>
+                            <img src={logo} width="50%"/>
+                        </div>
+                        <div> 
+                            <Form
+                                onFinish={Datos}
+                                name="basic"
+                                layout="vertical"
+                                autoComplete="off"
+                            >
+                                <Form.Item
+                                    name='user'
+                                    rules={[{ required: true, message: 'Por favor diligencie su usuario!' }]}
+                                    size='large'
+                                    label='Usuario:'
+                                    
+                                >
+                                    <Input  prefix={<FiUser />} placeholder="Escribe tu usuario"/>
+                                </Form.Item>
+                                <Form.Item
+                                    name='password'
+                                    rules={[{ required: true, message: 'Por favor diligencie su contraseña!' }]}
+                                    size='large'
+                                    label='Contraseña:'
+                                >
+                                    <Input.Password prefix={<FiLock />} placeholder="Escribe tu contraseña"/>
+                                </Form.Item>
+                                <Form.Item >
+                                    <Button 
+                                        type='primary'
+                                        htmlType="submit"
+                                        className='estilobotoningresar'
+                                        style={{margin:'1em 0'}}
+                                        onClick={()=> navigate('/home')}
+                                    >
+                                        Ingresar
+                                    </Button>
+                                    <Button 
+                                        type='default'
+                                        className='estilobotoncancelar'
+                                    >
+                                        Cancelar
+                                    </Button>
+                                </Form.Item>
+                            </Form>
+                        </div>
+                    </Col>
+                    {/*
+                        <Col xs={24} sm={24} md={20} lg={20} xl={8} style={{margin:'0 2em'}}>
+                        <div style={{background:'blue', height:'200px', width:'100%'}}>
+                        </div>
+                    </Col>
+    */}
+                </Row>
+            </div>
+        </div>
+    )
 }
 
-export default Login
+export default Login;
